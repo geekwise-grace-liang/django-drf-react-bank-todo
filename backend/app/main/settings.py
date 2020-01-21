@@ -124,7 +124,7 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = (
         #  'https://localhost:3000',
-        'https://bank-frontend.herokuapp.com',
+        'https://grace-bank-frontend.herokuapp.com/login',
 )       
 
 # CORS_ORIGIN_ALLOW_ALL = True
