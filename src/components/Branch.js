@@ -20,7 +20,7 @@ class Branch extends Component {
   }
   refreshList = () => {
     axios
-      .get("https://bank-bankend.herokuapp.com/branch/")
+      .get("https://grace-bank-backend.herokuapp.com/branch/")
       .then(res => this.setState({ todoList: res.data }))
       .catch(err => console.log(err));
   };
@@ -94,17 +94,17 @@ class Branch extends Component {
     this.toggle();
     if (item.id) {
       axios
-        .put(`https://bank-bankend.herokuapp.com/branch/${item.id}/`, item)
+        .put(`https://grace-bank-backend.herokuapp.com/branch/${item.id}/`, item)
         .then(res => this.refreshList());
       return;
     }
     axios
-      .post("https://bank-bankend.herokuapp.com/branch/", item)
+      .post("https://grace-bank-backend.herokuapp.com/branch/", item)
       .then(res => this.refreshList());
   };
   handleDelete = item => {
     axios
-      .delete(`https://bank-bankend.herokuapp.com/branch/${item.id}`)
+      .delete(`https://grace-bank-backend.herokuapp.com/branch/${item.id}`)
       .then(res => this.refreshList());
   };
   createItem = () => {
