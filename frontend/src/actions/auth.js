@@ -8,9 +8,40 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_FAIL,
-    REGISTER_SUCCESS
+    REGISTER_SUCCESS,
+    RESET_PASSWORD,
+    RESET_FAIL
 }
 from './types';
+
+// Reset password
+export const resetPassword = (username, password) => (dispatch, getState) => {
+    // Header
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+
+    // Request body
+    const body = JSON.stringify({username, password})
+
+    axios
+        .put('http://127.0.0.1:8000/users/api/auth/password', body, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: RESET_PASSWORD,
+                payload: res.data
+            });
+            alert('Password successfully changed. Please login with the new password')
+        }).catch(err => {
+            dispatch ({
+                type: RESET_FAIL
+            })
+        alert('Username not found')
+        });
+}
+
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
     // User loading
@@ -121,3 +152,19 @@ export const logout = () => (dispatch, getState) => {
           dispatch(returnErrors(err.response.data, err.response.status));
       });
 };
+
+export const tokenConfig = getState =>{
+    // Get token from state
+    const token = getState().auth.token;
+    // Headers
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    // If token add to headers config
+    if(token) {
+        config.headers['Authorization'] = `Token ${token}`;
+    }
+    return config
+}
