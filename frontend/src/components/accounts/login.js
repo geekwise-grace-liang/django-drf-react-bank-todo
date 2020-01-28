@@ -55,7 +55,7 @@ onSubmit = e => {
                     <button type="submit" className="btn btn-primary">Login</button>
                   </div>
                   <p>
-                    Don't have an account? <Link to="/register">Register</Link>
+                    Don't have an account? <Link to="/register">Register</Link> | <Link to ="/resetpassword">Reset Password</Link>
                   </p>
                 </form>
               </div>

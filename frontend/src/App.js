@@ -10,6 +10,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import { Provider } from 'react-redux';
 import store from "./store";
 import { loadUser } from './actions/auth';
+import ResetPassword from './actions/ResetPassword';
 
 class App extends Component {
   componentDidMount() {
@@ -21,11 +22,12 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Header/>
-          <Switch>
+          {/* <Switch> */}
           <PrivateRoute exact path="/" component={Branch}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/register" component={Register}/>
-          </Switch>
+          <Route path="/resetpassword" component={ResetPassword}/>
+          {/* </Switch> */}
         </Router>
       </Provider>
       
